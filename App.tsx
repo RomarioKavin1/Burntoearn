@@ -1,4 +1,4 @@
-const Stack = createNativeStackNavigator();
+
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
@@ -7,10 +7,35 @@ import HomeScroll3 from "./screens/HomeScroll3";
 import CaloriesDetails from "./screens/CaloriesDetails";
 import RewardReward from "./screens/RewardReward";
 import Login from "./screens/Login";
-
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Icon from 'react-native-vector-icons/Ionicons';
 import { View, Text, Pressable, TouchableOpacity } from "react-native";
-
+const Tab = createMaterialBottomTabNavigator();
+const Stack = createNativeStackNavigator();
+const tintColor='#2d3436'
+const Hometabs =()=>{
+  return(
+  <Tab.Navigator
+    initialRouteName="Login1"
+    // screenOptions={{ headerShown: false }}
+  >
+    <Tab.Screen
+      name="Home"
+      
+      component={HomeScroll3}
+      options={{tabBarIcon:()=>(  
+        <Icon name="ios-home" color={tintColor} size={25}/>
+        
+    )}}
+    />
+    <Tab.Screen
+      name="Rewards"
+      component={RewardReward}
+      // options={{ headerShown: false }}
+    />
+  </Tab.Navigator>)
+}
 const App = () => {
   const [hideSplashScreen, setHideSplashScreen] = React.useState(true);
   const [fontsLoaded, error] = useFonts({
@@ -30,8 +55,7 @@ const App = () => {
   return (
     <>
       <NavigationContainer>
-        {hideSplashScreen ? (
-          <Stack.Navigator
+        {hideSplashScreen ? (<Stack.Navigator
             initialRouteName="Login1"
             screenOptions={{ headerShown: false }}
           >
@@ -42,7 +66,7 @@ const App = () => {
             />
             <Stack.Screen
               name="HomeScroll3"
-              component={HomeScroll3}
+              component={Hometabs}
               options={{ headerShown: false }}
             />
             <Stack.Screen
@@ -52,7 +76,7 @@ const App = () => {
             />
             <Stack.Screen
               name="RewardReward"
-              component={RewardReward}
+              component={Hometabs}
               options={{ headerShown: false }}
             />
             <Stack.Screen
@@ -61,6 +85,7 @@ const App = () => {
               options={{ headerShown: false }}
             />
           </Stack.Navigator>
+          
         ) : null}
       </NavigationContainer>
     </>

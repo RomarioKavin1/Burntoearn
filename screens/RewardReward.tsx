@@ -1,17 +1,15 @@
 import * as React from "react";
-import { StyleSheet, View, Text, Pressable } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Image } from "expo-image";
 import WalletConnector from "../components/WalletConnector";
 import ProgressContainer from "../components/ProgressContainer";
-import { useNavigation } from "@react-navigation/native";
+import Appbar from "../components/Appbar1";
 import HeaderContainer from "../components/HeaderContainer";
 import ConnectedContainer from "../components/ConnectedContainer";
 import { Color, FontFamily, Border, FontSize } from "../GlobalStyles";
 
 const RewardReward = () => {
-  const navigation = useNavigation();
-
   return (
     <View style={styles.rewardreward}>
       <View style={styles.body}>
@@ -27,7 +25,9 @@ const RewardReward = () => {
           contentFit="cover"
           source={require("../assets/icon10.png")}
         />
-        <Text style={[styles.yourAvaialblePoint, styles.thisWeekPointsTypo]}>
+        <Text
+          style={[styles.yourAvaialblePoint, styles.thisWeekPointsPosition]}
+        >
           Your Avaialble points
         </Text>
         <Text style={[styles.pts, styles.ptsTypo]}>
@@ -50,57 +50,20 @@ const RewardReward = () => {
           contentFit="cover"
           source={require("../assets/image-28.png")}
         />
-        <Text style={[styles.thisWeekPoints, styles.homePosition]}>
+        <Text style={[styles.thisWeekPoints, styles.thisWeekPointsPosition]}>
           Todays points
         </Text>
       </View>
-      <View style={[styles.appbar, styles.appbarLayout]}>
-        <View style={[styles.appbar1, styles.text2Position]}>
-          <View style={[styles.base1, styles.base1Position]} />
-          <View style={[styles.item5, styles.itemIconPosition]}>
-            <Image
-              style={[styles.dotIcon, styles.iconLayout]}
-              contentFit="cover"
-              source={require("../assets/dot1.png")}
-            />
-            <Text style={[styles.home, styles.homePosition]}>Reward</Text>
-          </View>
-          <Image
-            style={[styles.item4Icon, styles.itemIconPosition]}
-            contentFit="cover"
-            source={require("../assets/item-41.png")}
-          />
-          <Image
-            style={[styles.playIcon, styles.playIconPosition]}
-            contentFit="cover"
-            source={require("../assets/play1.png")}
-          />
-          <Image
-            style={[styles.item2Icon, styles.itemIconPosition]}
-            contentFit="cover"
-            source={require("../assets/item-21.png")}
-          />
-          <Pressable
-            style={[styles.item1, styles.itemIconPosition]}
-            onPress={() => navigation.navigate("HomeScroll3")}
-          >
-            <Image
-              style={styles.icon1}
-              contentFit="cover"
-              source={require("../assets/item-1.png")}
-            />
-          </Pressable>
-        </View>
-      </View>
+      <Appbar />
       <Image
         style={styles.metamaskFox1Icon}
         contentFit="cover"
         source={require("../assets/metamask-fox-1.png")}
       />
       <HeaderContainer />
-      <View style={[styles.minttokens, styles.playIconPosition]}>
-        <View style={[styles.buttonShape, styles.base1Position]} />
-        <Text style={[styles.text2, styles.text2Position]}>Mint Tokens</Text>
+      <View style={styles.minttokens}>
+        <View style={styles.buttonShape} />
+        <Text style={[styles.text2, styles.ptsTypo]}>Mint Tokens</Text>
       </View>
       <ConnectedContainer />
     </View>
@@ -111,19 +74,23 @@ const styles = StyleSheet.create({
   iconLayout: {
     maxHeight: "100%",
     maxWidth: "100%",
+    position: "absolute",
     overflow: "hidden",
   },
-  thisWeekPointsTypo: {
+  thisWeekPointsPosition: {
     color: Color.gray_100,
-    fontFamily: FontFamily.paragraph03,
+    fontFamily: FontFamily.paragraph02,
     left: "10.03%",
     textAlign: "left",
+    top: "50%",
     width: "42.25%",
+    position: "absolute",
   },
   ptsTypo: {
     color: Color.colorsBlack100,
-    fontFamily: FontFamily.headline06,
+    fontFamily: FontFamily.headline02,
     fontWeight: "700",
+    position: "absolute",
   },
   basePosition: {
     backgroundColor: Color.black,
@@ -134,38 +101,6 @@ const styles = StyleSheet.create({
     left: "9.12%",
     position: "absolute",
   },
-  homePosition: {
-    lineHeight: 24,
-    fontSize: FontSize.headline06_size,
-    top: "50%",
-    position: "absolute",
-  },
-  appbarLayout: {
-    height: 102,
-    width: 375,
-    left: 0,
-  },
-  text2Position: {
-    top: 0,
-    position: "absolute",
-  },
-  base1Position: {
-    left: "0%",
-    right: "0%",
-    position: "absolute",
-    width: "100%",
-  },
-  itemIconPosition: {
-    width: "16%",
-    bottom: "0%",
-    top: "0%",
-    height: "100%",
-    position: "absolute",
-  },
-  playIconPosition: {
-    left: "41.33%",
-    position: "absolute",
-  },
   bodyChild: {
     top: 225,
     left: 2,
@@ -173,7 +108,7 @@ const styles = StyleSheet.create({
     width: 325,
     height: 189,
     opacity: 0.8,
-    backgroundColor: Color.new,
+    backgroundColor: Color.gradientLightPurple,
     position: "absolute",
   },
   icon: {
@@ -183,22 +118,20 @@ const styles = StyleSheet.create({
     right: "83.59%",
     bottom: "50.37%",
     left: "9.12%",
+    maxHeight: "100%",
     maxWidth: "100%",
-    position: "absolute",
   },
   yourAvaialblePoint: {
     marginTop: 25,
     lineHeight: 16,
     textAlign: "left",
     fontSize: FontSize.headline07_size,
-    top: "50%",
-    position: "absolute",
   },
   text: {
     fontSize: FontSize.headline02_size,
   },
   pts1: {
-    fontSize: FontSize.headline06_size,
+    fontSize: FontSize.paragraph03_size,
   },
   pts: {
     marginTop: 46,
@@ -206,14 +139,13 @@ const styles = StyleSheet.create({
     lineHeight: 34,
     textAlign: "left",
     top: "50%",
-    position: "absolute",
-    width: "42.25%",
     color: Color.colorsBlack100,
-    fontFamily: FontFamily.headline06,
+    fontFamily: FontFamily.headline02,
     fontWeight: "700",
+    width: "42.25%",
   },
   text1: {
-    fontSize: FontSize.bodyBody1_size,
+    fontSize: FontSize.paragraph02_size,
   },
   pts3: {
     fontSize: FontSize.headline07_size,
@@ -224,7 +156,9 @@ const styles = StyleSheet.create({
     lineHeight: 26,
     textAlign: "right",
     top: "50%",
-    position: "absolute",
+    color: Color.colorsBlack100,
+    fontFamily: FontFamily.headline02,
+    fontWeight: "700",
   },
   base: {
     width: "84.8%",
@@ -243,7 +177,6 @@ const styles = StyleSheet.create({
     bottom: "23.24%",
     left: "3.9%",
     opacity: 0.05,
-    position: "absolute",
   },
   image28Icon: {
     top: 267,
@@ -254,93 +187,16 @@ const styles = StyleSheet.create({
   },
   thisWeekPoints: {
     marginTop: 98,
+    lineHeight: 24,
     height: 26,
+    fontSize: FontSize.paragraph03_size,
     textAlign: "left",
-    color: Color.gray_100,
-    fontFamily: FontFamily.paragraph03,
-    left: "10.03%",
-    width: "42.25%",
   },
   body: {
     top: 156,
     left: 23,
     width: 329,
     height: 540,
-    position: "absolute",
-  },
-  base1: {
-    borderRadius: Border.br_21xl,
-    bottom: "0%",
-    top: "0%",
-    left: "0%",
-    right: "0%",
-    height: "100%",
-    backgroundColor: Color.colorsWhite100,
-  },
-  dotIcon: {
-    height: "3.81%",
-    width: "6.67%",
-    top: "61.9%",
-    right: "46.67%",
-    bottom: "34.29%",
-    left: "46.67%",
-    position: "absolute",
-  },
-  home: {
-    marginTop: -12,
-    width: "86.67%",
-    left: "6.67%",
-    textAlign: "center",
-    color: Color.colorsBlack100,
-    fontFamily: FontFamily.headline06,
-    fontWeight: "700",
-  },
-  item5: {
-    right: "5.33%",
-    left: "78.67%",
-  },
-  item4Icon: {
-    right: "22.67%",
-    left: "61.33%",
-    maxHeight: "100%",
-    maxWidth: "100%",
-    overflow: "hidden",
-  },
-  playIcon: {
-    height: "61.9%",
-    width: "17.33%",
-    top: "16.19%",
-    right: "41.33%",
-    bottom: "21.9%",
-    maxHeight: "100%",
-    maxWidth: "100%",
-    overflow: "hidden",
-  },
-  item2Icon: {
-    right: "61.33%",
-    left: "22.67%",
-    maxHeight: "100%",
-    maxWidth: "100%",
-    overflow: "hidden",
-  },
-  icon1: {
-    height: "100%",
-    maxHeight: "100%",
-    maxWidth: "100%",
-    overflow: "hidden",
-    width: "100%",
-  },
-  item1: {
-    left: "5.33%",
-    right: "78.67%",
-  },
-  appbar1: {
-    height: 102,
-    width: 375,
-    left: 0,
-  },
-  appbar: {
-    top: 710,
     position: "absolute",
   },
   metamaskFox1Icon: {
@@ -354,20 +210,20 @@ const styles = StyleSheet.create({
   buttonShape: {
     height: "82.14%",
     top: "10.71%",
+    right: "0%",
     bottom: "7.14%",
+    left: "0%",
     borderRadius: Border.br_base,
     backgroundColor: "#ffdee4",
-    left: "0%",
-    right: "0%",
+    position: "absolute",
+    width: "100%",
   },
   text2: {
+    top: 0,
     left: 19,
     fontSize: 10,
     lineHeight: 28,
     width: 60,
-    color: Color.colorsBlack100,
-    fontFamily: FontFamily.headline06,
-    fontWeight: "700",
     textAlign: "left",
   },
   minttokens: {
@@ -376,13 +232,15 @@ const styles = StyleSheet.create({
     top: "64.16%",
     right: "32.35%",
     bottom: "32.39%",
+    left: "41.33%",
+    position: "absolute",
   },
   rewardreward: {
+    backgroundColor: Color.colorsWhite100,
     flex: 1,
     height: 812,
     overflow: "hidden",
     width: "100%",
-    backgroundColor: Color.colorsWhite100,
   },
 });
 

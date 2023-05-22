@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, View, Pressable, Text } from "react-native";
+import { StyleSheet, View,ScrollView, Pressable, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Image } from "expo-image";
 import InviteFriendsCard from "../components/InviteFriendsCard";
@@ -7,37 +7,37 @@ import TodaysInformationContainer from "../components/TodaysInformationContainer
 import ThursdayContainer from "../components/ThursdayContainer";
 import ConnectedContainer from "../components/ConnectedContainer";
 import { Color, FontFamily, Border, FontSize } from "../GlobalStyles";
+import Bottomnav1 from "../components/bottomnav1";
 
 const HomeScroll3 = () => {
   return (
     <View style={styles.homescroll3}>
+      
       <View style={styles.body}>
+     
         <InviteFriendsCard />
+        
         <LinearGradient
           style={styles.base}
           locations={[0, 1]}
           colors={["#ff6079", "rgba(255, 96, 121, 0.49)"]}
         />
+        
         <TodaysInformationContainer />
+        
         <Image
           style={[styles.icon, styles.iconLayout]}
           contentFit="cover"
           source={require("../assets/icon4.png")}
         />
+        
       </View>
-      <View style={styles.title}>
-        <Image
-          style={styles.icon2}
-          contentFit="cover"
-          source={require("../assets/icon3.png")}
-        />
-        <Text style={[styles.weeklyStatus, styles.homeTypo]}>
-          Weekly Status
-        </Text>
-      </View>
+      
       <View style={styles.offset}>
+      
       <ThursdayContainer />
       <ConnectedContainer />
+      
       </View>
     </View>
   );
@@ -130,6 +130,8 @@ const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: Color.colorsWhite100,
   },
+  bottomnav:{
+     }
 });
 
 export default HomeScroll3;
