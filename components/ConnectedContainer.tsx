@@ -6,19 +6,21 @@ import { FontFamily, FontSize, Border, Color } from "../GlobalStyles";
 const ConnectedContainer = () => {
   return (
     <View style={styles.tokenbar}>
-      <View style={[styles.tokenbarChild, styles.tokenbarBorder]} />
+      <View style={[]} />
+      <View style={[styles.off]}>
       <Image
         style={[styles.metamaskFox2Icon, styles.tokenLayout]}
         contentFit="cover"
-        source={require("../assets/metamask-fox-2.png")}
+        source={require("../assets/metamask-fox-21.png")}
       />
-      <Text style={[styles.walletAddress, styles.connected1Typo]}>
+      <Text style={[styles.walletAddress]}>
         0x2f59dBBcb3B393D86dbd539105E22ee4CaC23563
       </Text>
-      <View style={[styles.tokenbarItem, styles.tokenbarBorder]} />
+      </View>
+      <View style={[]} />
       <View style={[styles.token, styles.tokenLayout]}>
         <Image
-          style={[styles.tokenChild, styles.tokenLayout]}
+          style={[styles.tokenChild]}
           contentFit="cover"
           source={require("../assets/ellipse-2.png")}
         />
@@ -45,8 +47,11 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     position: "absolute",
   },
+  off:{
+    left:-80
+  },
   tokenLayout: {
-    width: 16,
+    width: 20,
     position: "absolute",
   },
   connected1Typo: {
@@ -58,7 +63,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   connectedLayout: {
-    width: 63,
+    width: 130,
     position: "absolute",
   },
   tokenbarChild: {
@@ -72,9 +77,9 @@ const styles = StyleSheet.create({
   },
   metamaskFox2Icon: {
     left: 16,
-    height: 16,
-    overflow: "hidden",
-    top: 9,
+    height: 20,
+    width:20,
+    top: 15,
   },
   walletAddress: {
     marginTop: -19.5,
@@ -82,12 +87,11 @@ const styles = StyleSheet.create({
     left: "13.78%",
     height: 28,
     color: Color.colorsBlack100,
-    top: "50%",
+    top: "340%",
     textAlign: "left",
     fontFamily: FontFamily.headline06,
     fontWeight: "700",
-    lineHeight: 28,
-    fontSize: FontSize.size_6xs,
+    fontSize: 10,
   },
   tokenbarItem: {
     top: -1,
@@ -97,7 +101,7 @@ const styles = StyleSheet.create({
     height: 49,
   },
   tokenChild: {
-    height: 15,
+    height: 20,
     left: 0,
     top: 0,
   },
@@ -127,23 +131,22 @@ const styles = StyleSheet.create({
     height: 30,
   },
   connectedChild: {
-    borderRadius: Border.br_6xl,
+    borderRadius: Border.br_81xl,
     backgroundColor: Color.palegreen,
-    height: 11,
+    height: 12,
     top: 9,
-    left: 0,
+    left: -60,
   },
   connected1: {
-    left: 14,
+    left: -10,
     color: Color.black,
     width: 48,
-    height: 12,
+    // height: 12,
     textAlign: "left",
     fontFamily: FontFamily.headline06,
     fontWeight: "700",
-    lineHeight: 28,
-    fontSize: FontSize.size_6xs,
-    top: 0,
+    lineHeight: 10,
+    fontSize: FontSize.size_mid,
   },
   connected: {
     top: 16,

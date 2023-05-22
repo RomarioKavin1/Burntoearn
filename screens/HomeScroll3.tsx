@@ -35,8 +35,10 @@ const HomeScroll3 = () => {
           Weekly Status
         </Text>
       </View>
+      <View style={styles.offset}>
       <ThursdayContainer />
       <ConnectedContainer />
+      </View>
     </View>
   );
 };
@@ -46,6 +48,10 @@ const styles = StyleSheet.create({
     maxHeight: "100%",
     maxWidth: "100%",
     overflow: "hidden",
+  },
+  offset:{
+    left:23,
+    top:12
   },
   itemIconPosition: {
     width: "16%",
@@ -69,7 +75,7 @@ const styles = StyleSheet.create({
     bottom: "4.38%",
     left: "5.81%",
     borderRadius: Border.br_5xl,
-    backgroundColor: Color.new,
+    backgroundColor: Color.colorsWhite100,
     position: "absolute",
   },
   icon: {
@@ -83,7 +89,7 @@ const styles = StyleSheet.create({
   },
   body: {
     top: 166,
-    left: 24,
+    left: 50,
     width: 327,
     height: 480,
     position: "absolute",

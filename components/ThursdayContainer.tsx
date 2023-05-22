@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   buttonIcon: {
-    top: -1,
+    top: 60,
     left: 270,
   },
   thursday08July: {

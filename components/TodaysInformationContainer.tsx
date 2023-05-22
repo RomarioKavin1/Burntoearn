@@ -61,11 +61,11 @@ const TodaysInformationContainer = () => {
         </View>
       </View>
       <View style={[styles.title3, styles.itemsPosition]}>
-        <Image
+        {/* <Image
           style={[styles.icon2, styles.iconLayout]}
           contentFit="cover"
           source={require("../assets/icon3.png")}
-        />
+        /> */}
         <Text style={[styles.july2021, styles.july2021Position]}>
           July, 2021
         </Text>
