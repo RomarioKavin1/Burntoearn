@@ -33,7 +33,7 @@ const Hometabs =()=>{
       name="Rewards"
       component={RewardReward}
       // options={{ headerShown: false }}
-    />
+      options={{tabBarIcon:()=>(<Icon name="ios-medal" color={tintColor} size={25}/>)}}/>
   </Tab.Navigator>)
 }
 const App = () => {

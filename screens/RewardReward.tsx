@@ -4,7 +4,6 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Image } from "expo-image";
 import WalletConnector from "../components/WalletConnector";
 import ProgressContainer from "../components/ProgressContainer";
-import Appbar from "../components/Appbar1";
 import HeaderContainer from "../components/HeaderContainer";
 import ConnectedContainer from "../components/ConnectedContainer";
 import { Color, FontFamily, Border, FontSize } from "../GlobalStyles";
@@ -12,6 +11,7 @@ import { Color, FontFamily, Border, FontSize } from "../GlobalStyles";
 const RewardReward = () => {
   return (
     <View style={styles.rewardreward}>
+      <View style={styles.offset}>
       <View style={styles.body}>
         <WalletConnector />
         <ProgressContainer />
@@ -54,18 +54,15 @@ const RewardReward = () => {
           Todays points
         </Text>
       </View>
-      <Appbar />
       <Image
         style={styles.metamaskFox1Icon}
         contentFit="cover"
         source={require("../assets/metamask-fox-1.png")}
       />
       <HeaderContainer />
-      <View style={styles.minttokens}>
-        <View style={styles.buttonShape} />
-        <Text style={[styles.text2, styles.ptsTypo]}>Mint Tokens</Text>
-      </View>
+
       <ConnectedContainer />
+      </View>
     </View>
   );
 };
@@ -76,6 +73,10 @@ const styles = StyleSheet.create({
     maxWidth: "100%",
     position: "absolute",
     overflow: "hidden",
+  },
+  offset: {
+    left:24,
+    top:15
   },
   thisWeekPointsPosition: {
     color: Color.gray_100,
