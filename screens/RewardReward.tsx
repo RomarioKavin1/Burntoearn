@@ -2,7 +2,6 @@ import * as React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Image } from "expo-image";
-import WalletConnector from "../components/WalletConnector";
 import ProgressContainer from "../components/ProgressContainer";
 import HeaderContainer from "../components/HeaderContainer";
 import ConnectedContainer from "../components/ConnectedContainer";
@@ -13,13 +12,13 @@ const RewardReward = () => {
     <View style={styles.rewardreward}>
       <View style={styles.offset}>
       <View style={styles.body}>
-        <WalletConnector />
         <ProgressContainer />
         <LinearGradient
           style={styles.bodyChild}
           locations={[0, 1]}
           colors={["rgba(255, 96, 121, 0.16)", "rgba(255, 96, 121, 0.09)"]}
         />
+        
         <Image
           style={[styles.icon, styles.iconLayout]}
           contentFit="cover"
@@ -30,29 +29,28 @@ const RewardReward = () => {
         >
           Your Avaialble points
         </Text>
-        <Text style={[styles.pts, styles.ptsTypo]}>
-          <Text style={styles.text}>{`8918 `}</Text>
-          <Text style={styles.pts1}>pts.</Text>
-        </Text>
-        <Text style={[styles.pts2, styles.ptsTypo]}>
-          <Text style={styles.text1}>{`25/50 `}</Text>
-          <Text style={styles.pts3}>pts</Text>
-        </Text>
-        <View style={[styles.base, styles.basePosition]} />
-        <View style={[styles.status, styles.basePosition]} />
-        <Image
-          style={[styles.illustrationIcon, styles.iconLayout]}
-          contentFit="cover"
-          source={require("../assets/illustration.png")}
-        />
         <Image
           style={styles.image28Icon}
           contentFit="cover"
           source={require("../assets/image-28.png")}
         />
+        <View style={[styles.pointscard]}>
+        <Text style={[styles.pts, styles.ptsTypo]}>
+          <Text style={[styles.text]}>{`8918 `}</Text>
+          <Text style={styles.pts1}>pts.</Text>
+        </Text>
+        <Text style={[styles.points]}>25</Text>
+        <Text style={[styles.pts2, styles.ptsTypo]}>
+          <Text style={[styles.text1]}>{`25/50 `}</Text>
+          <Text style={styles.pts3}>pts</Text>
+        </Text>
+        <View style={[styles.base, styles.basePosition]} />
+        <View style={[styles.status, styles.basePosition]} />
+        
         <Text style={[styles.thisWeekPoints, styles.thisWeekPointsPosition]}>
           Todays points
         </Text>
+        </View>
       </View>
       <Image
         style={styles.metamaskFox1Icon}
@@ -68,6 +66,14 @@ const RewardReward = () => {
 };
 
 const styles = StyleSheet.create({
+  pointscard:{
+    top:240
+  },
+  points:{
+    top: 110,
+    left: 150,
+    fontFamily: FontFamily.paragraph03},
+
   iconLayout: {
     maxHeight: "100%",
     maxWidth: "100%",
@@ -80,7 +86,7 @@ const styles = StyleSheet.create({
   },
   thisWeekPointsPosition: {
     color: Color.gray_100,
-    fontFamily: FontFamily.paragraph02,
+    fontFamily: FontFamily.paragraph03,
     left: "10.03%",
     textAlign: "left",
     top: "50%",
@@ -89,7 +95,7 @@ const styles = StyleSheet.create({
   },
   ptsTypo: {
     color: Color.colorsBlack100,
-    fontFamily: FontFamily.headline02,
+    // fontFamily: FontFamily.headline02,
     fontWeight: "700",
     position: "absolute",
   },
@@ -103,19 +109,19 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   bodyChild: {
-    top: 225,
+    top: 200,
     left: 2,
     borderRadius: 30,
     width: 325,
     height: 189,
     opacity: 0.8,
-    backgroundColor: Color.gradientLightPurple,
+    // backgroundColor: Color.gradientLightPurple,
     position: "absolute",
   },
   icon: {
     height: "4.44%",
     width: "7.29%",
-    top: "45.19%",
+    top: "40.19%",
     right: "83.59%",
     bottom: "50.37%",
     left: "9.12%",
@@ -123,7 +129,7 @@ const styles = StyleSheet.create({
     maxWidth: "100%",
   },
   yourAvaialblePoint: {
-    marginTop: 25,
+    marginTop: -20,
     lineHeight: 16,
     textAlign: "left",
     fontSize: FontSize.headline07_size,
@@ -132,7 +138,7 @@ const styles = StyleSheet.create({
     fontSize: FontSize.headline02_size,
   },
   pts1: {
-    fontSize: FontSize.paragraph03_size,
+    // fontSize: FontSize.paragraph03_size,
   },
   pts: {
     marginTop: 46,
@@ -141,12 +147,12 @@ const styles = StyleSheet.create({
     textAlign: "left",
     top: "50%",
     color: Color.colorsBlack100,
-    fontFamily: FontFamily.headline02,
+    // fontFamily: FontFamily.headline02,
     fontWeight: "700",
     width: "42.25%",
   },
   text1: {
-    fontSize: FontSize.paragraph02_size,
+    // fontSize: FontSize.paragraph02_size,
   },
   pts3: {
     fontSize: FontSize.headline07_size,
@@ -158,7 +164,7 @@ const styles = StyleSheet.create({
     textAlign: "right",
     top: "50%",
     color: Color.colorsBlack100,
-    fontFamily: FontFamily.headline02,
+    // fontFamily: FontFamily.headline02,
     fontWeight: "700",
   },
   base: {
@@ -190,7 +196,7 @@ const styles = StyleSheet.create({
     marginTop: 98,
     lineHeight: 24,
     height: 26,
-    fontSize: FontSize.paragraph03_size,
+    fontSize: FontSize.size_mid,
     textAlign: "left",
   },
   body: {

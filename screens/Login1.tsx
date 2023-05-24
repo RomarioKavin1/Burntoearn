@@ -108,10 +108,10 @@ const styles = StyleSheet.create({
     width: 217,
     textAlign: "center",
     left: 2,
-    top: 41,
+    top: 45,
   },
   googleFitIcon20181: {
-    top: 42,
+    top: 45,
     left: 230,
     width: 25,
     height: 21,
