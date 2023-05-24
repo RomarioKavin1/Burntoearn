@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     width: 217,
     textAlign: "center",
     left: 2,
-    top: 41,
+    top: 45,
   },
   loginText: {
     top: 19,
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   metamaskFox2Icon: {
-    top: 300,
+    top: 320,
     left: 285,
     width: 40,
     height: 40,
