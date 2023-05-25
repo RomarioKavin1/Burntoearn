@@ -4,13 +4,14 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Image } from "expo-image";
 import InviteFriendsCard from "../components/InviteFriendsCard";
 import TodaysInformationContainer from "../components/TodaysInformationContainer";
-import ThursdayContainer from "../components/ThursdayContainer";
 import ConnectedContainer from "../components/ConnectedContainer";
+
 import { Color, FontFamily, Border, FontSize } from "../GlobalStyles";
-import Bottomnav1 from "../components/bottomnav1";
+
 
 const HomeScroll3 = () => {
   return (
+    <ScrollView>
     <View style={styles.homescroll3}>
       
       <View style={styles.body}>
@@ -35,11 +36,12 @@ const HomeScroll3 = () => {
       
       <View style={styles.offset}>
       
-      <ThursdayContainer />
+      {/* <ThursdayContainer /> */}
       <ConnectedContainer />
       
       </View>
     </View>
+    </ScrollView>
   );
 };
 
