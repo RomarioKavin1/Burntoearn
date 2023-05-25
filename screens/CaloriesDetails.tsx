@@ -6,8 +6,8 @@ import { ScrollView } from "react-native-gesture-handler";
 
 const CaloriesDetails = () => {
   return (
-    <ScrollView style={{backgroundColor:  '#FFFFFF',top:0}}>
-  <View style={{backgroundColor: '#FFFFFF',top:0}}>
+    <ScrollView style={{backgroundColor:  '#FFFFFF'}}>
+      <View style={{backgroundColor: '#FFFFFF',top:-100}}>
       <View style={styles.caloriesdetails}>
         <View style={{top:0}} />
           <Image
@@ -164,8 +164,8 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   iconPosition: {
-    width: 375,
-    left: 0,
+    width: 400,
+    left: -10,
     position: "absolute",
   },
   appbarLayout: {
