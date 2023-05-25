@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   metamaskFox2Icon: {
-    top: 320,
+    top: 305,
     left: 285,
     width: 40,
     height: 40,

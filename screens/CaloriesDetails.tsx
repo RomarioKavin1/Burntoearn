@@ -1,217 +1,84 @@
 import * as React from "react";
 import { Text, StyleSheet, View } from "react-native";
 import { Image } from "expo-image";
-import CardContainer from "../components/CardContainer";
-import ContainerCard from "../components/ContainerCard";
 import { FontFamily, FontSize, Color, Border } from "../GlobalStyles";
+import { ScrollView } from "react-native-gesture-handler";
 
 const CaloriesDetails = () => {
   return (
-    <View style={styles.caloriesdetails}>
-      <View style={[styles.body, styles.bodyPosition1]}>
-        <View style={styles.statistical}>
-          <CardContainer />
-          <View style={styles.info}>
-            <View style={[styles.points, styles.stepsPosition]}>
+    <ScrollView style={{backgroundColor:  '#FFFFFF',top:0}}>
+  <View style={{backgroundColor: '#FFFFFF',top:0}}>
+      <View style={styles.caloriesdetails}>
+        <View style={{top:0}} />
+          <Image
+            style={[styles.baseIcon, styles.iconPosition]}
+            contentFit="cover"
+            source={require("../assets/base.png")}
+          />
+          <View style={styles.kilometers}>
               <View style={[styles.body1, styles.bodyPosition]}>
-                <Text style={[styles.points1, styles.homeFlexBox]}>Points</Text>
+                <Text style={[styles.points1, styles.homeFlexBox]}>Kilometers</Text>
               </View>
-              <Text style={[styles.text, styles.textTypo4]}>1248</Text>
-            </View>
-            <View style={[styles.steps, styles.stepsPosition]}>
-              <View style={[styles.body1, styles.bodyPosition]}>
-                <Text style={[styles.points1, styles.homeFlexBox]}>Steps</Text>
+              <Text style={[styles.text, styles.textTypo4]}>4.84</Text>
+          </View>
+          <View style={[styles.body5, styles.body5Position]}>
+            <Text style={[styles.points1, styles.homeFlexBox]}>Time</Text>
+          </View>
+          <Text style={[styles.text10, styles.body5Position]}>24:06</Text>
+          <View style={[styles.body6, styles.body6Position]}>
+            <Text style={[styles.points1, styles.homeFlexBox]}>Calories</Text>
+          </View>
+          <Text style={[styles.text11, styles.body6Position]}>480</Text>
+          <Image
+            style={[styles.chartIcon, styles.iconPosition]}
+            contentFit="cover"
+            source={require("../assets/chart1.png")}
+          />
+          <Text
+            style={[styles.totalKilocalories1, styles.datePosition]}
+          >{`Total Kilocalories `}</Text>
+          <Text style={[styles.text12, styles.datePosition]}>4880</Text>
+
+          <View style={[styles.date, styles.datePosition]}>
+            <Text style={[styles.today, styles.textFlexBox]}>Today</Text>
+            <Text style={[styles.thu08July, styles.textFlexBox]}>Thu, 08 July</Text>
+          </View>
+          <View style={styles.tab}>
+            <View style={[styles.base5, styles.baseBg]} />
+            <View style={[styles.item11, styles.itemPosition]}>
+              <View style={[styles.content, styles.basePosition]}>
+                <View style={[styles.base6, styles.basePosition]} />
+                <Text style={[styles.active1, styles.normalPosition]}>Daily</Text>
               </View>
-              <Text style={[styles.text, styles.textTypo4]}>9832</Text>
             </View>
-            <View style={[styles.distance, styles.stepsPosition]}>
-              <View style={[styles.body1, styles.bodyPosition]}>
-                <Text style={[styles.points1, styles.homeFlexBox]}>
-                  Distance
-                </Text>
+            <View style={[styles.item2, styles.itemPosition]}>
+              <View style={[styles.content, styles.basePosition]}>
+                <View style={[styles.base7, styles.basePosition]} />
+                <Text style={[styles.normal, styles.normalPosition]}>Weekly</Text>
               </View>
-              <Text style={[styles.text, styles.textTypo4]}>7580 m</Text>
+            </View>
+            <View style={[styles.item3, styles.itemPosition]}>
+              <View style={[styles.content, styles.basePosition]}>
+                <View style={[styles.base7, styles.basePosition]} />
+                <Text style={[styles.normal, styles.normalPosition]}>Monthly</Text>
+              </View>
             </View>
           </View>
-          <View style={[styles.text2, styles.text2Position]}>
-            <Text
-              style={[styles.totalKilocalories, styles.totalTypo]}
-            >{`Total Kilocalories `}</Text>
-            <Text style={[styles.kcal, styles.kcalTypo]}>1 883 Kcal</Text>
-          </View>
-          <View style={[styles.calendar, styles.text2Position]}>
-            <View style={[styles.day, styles.baseLayout]}>
-              <Text style={[styles.text3, styles.textTypo3]}>5</Text>
-              <Text style={[styles.text4, styles.textTypo3]}>6</Text>
-              <Text style={[styles.text5, styles.textTypo3]}>7</Text>
-              <Text style={[styles.text6, styles.textTypo3]}>9</Text>
-              <Text style={[styles.text7, styles.textTypo3]}>10</Text>
-              <Text style={[styles.text8, styles.textTypo3]}>11</Text>
+          <View style={[styles.title1, styles.datePosition]}>
+            <View style={[styles.body7, styles.bodyPosition]}>
+              <Text style={[styles.steps2, styles.totalTypo]}>1 240 Steps</Text>
             </View>
-            <View style={[styles.active, styles.basePosition]}>
-              <View style={[styles.base, styles.basePosition]} />
-              <Text style={[styles.today8Jul, styles.textTypo4]}>
-                Today, 8 Jul
-              </Text>
-            </View>
+            <Text style={[styles.steps3, styles.steps3Typo]}>Steps</Text>
           </View>
-          <ContainerCard />
-        </View>
-        <View style={styles.title}>
-          <Text style={[styles.yourActivities, styles.steps3Typo]}>
-            Your Activities
-          </Text>
-          <Text style={[styles.today8Jul1, styles.totalTypo]}>
-            Today, 8 Jul
-          </Text>
-        </View>
-        <Image
-          style={[styles.userIcon, styles.iconPosition]}
-          contentFit="cover"
-          source={require("../assets/user.png")}
-        />
-      </View>
-      <View style={[styles.appbar, styles.appbarLayout]}>
-        <View style={[styles.appbar1, styles.appbarLayout]}>
-          <View style={[styles.base1, styles.basePosition]} />
+          <View style={[styles.base9, styles.baseBg]} />
           <Image
-            style={[styles.item5Icon, styles.iconLayout]}
+            style={styles.vectorIcon}
             contentFit="cover"
-            source={require("../assets/item-5.png")}
+            source={require("../assets/vector2.png")}
           />
-          <Image
-            style={[styles.item4Icon, styles.iconLayout]}
-            contentFit="cover"
-            source={require("../assets/item-4.png")}
-          />
-          <Image
-            style={[styles.playIcon, styles.iconLayout]}
-            contentFit="cover"
-            source={require("../assets/play.png")}
-          />
-          <Image
-            style={[styles.item2Icon, styles.iconLayout]}
-            contentFit="cover"
-            source={require("../assets/item-2.png")}
-          />
-          <View style={[styles.item1, styles.iconLayout1]}>
-            <Image
-              style={[styles.dotIcon, styles.iconLayout]}
-              contentFit="cover"
-              source={require("../assets/dot.png")}
-            />
-            <Text style={[styles.home, styles.textTypo4]}>Home</Text>
-          </View>
-        </View>
       </View>
-      <View style={[styles.caloriesdetailsChild, styles.iconPosition]} />
-      <Image
-        style={[styles.baseIcon, styles.iconPosition]}
-        contentFit="cover"
-        source={require("../assets/base.png")}
-      />
-      <View style={styles.kilometers}>
-        <View style={[styles.body1, styles.bodyPosition]}>
-          <Text style={[styles.points1, styles.homeFlexBox]}>Kilometers</Text>
-        </View>
-        <Text style={[styles.text, styles.textTypo4]}>4.84</Text>
-        <View style={styles.percent}>
-          <View style={styles.base2} />
-          <Image
-            style={styles.triangleIcon}
-            contentFit="cover"
-            source={require("../assets/triangle.png")}
-          />
-        </View>
-      </View>
-      <View style={[styles.body5, styles.body5Position]}>
-        <Text style={[styles.points1, styles.homeFlexBox]}>Time</Text>
-      </View>
-      <Text style={[styles.text10, styles.body5Position]}>24:06</Text>
-      <View style={[styles.percent1, styles.base4Layout]}>
-        <View style={[styles.base3, styles.baseShadowBox]} />
-        <Image
-          style={styles.triangleIcon}
-          contentFit="cover"
-          source={require("../assets/triangle.png")}
-        />
-      </View>
-      <View style={[styles.body6, styles.body6Position]}>
-        <Text style={[styles.points1, styles.homeFlexBox]}>Calories</Text>
-      </View>
-      <Text style={[styles.text11, styles.body6Position]}>480</Text>
-      <View style={[styles.base4, styles.baseShadowBox]} />
-      <Image
-        style={[styles.triangleIcon2, styles.triangleIconLayout]}
-        contentFit="cover"
-        source={require("../assets/triangle1.png")}
-      />
-      <Image
-        style={[styles.chartIcon, styles.iconPosition]}
-        contentFit="cover"
-        source={require("../assets/chart1.png")}
-      />
-      <Text
-        style={[styles.totalKilocalories1, styles.datePosition]}
-      >{`Total Kilocalories `}</Text>
-      <Text style={[styles.text12, styles.datePosition]}>4880</Text>
-      <Text style={[styles.text13, styles.textFlexBox]}>14%</Text>
-      <Image
-        style={[styles.triangleIcon3, styles.triangleIconLayout]}
-        contentFit="cover"
-        source={require("../assets/triangle1.png")}
-      />
-      <Text style={[styles.text14, styles.textFlexBox]}>14%</Text>
-      <View style={[styles.date, styles.datePosition]}>
-        <Text style={[styles.today, styles.textFlexBox]}>Today</Text>
-        <Text style={[styles.thu08July, styles.textFlexBox]}>Thu, 08 July</Text>
-      </View>
-      <View style={styles.tab}>
-        <View style={[styles.base5, styles.baseBg]} />
-        <View style={[styles.item11, styles.itemPosition]}>
-          <View style={[styles.content, styles.basePosition]}>
-            <View style={[styles.base6, styles.basePosition]} />
-            <Text style={[styles.active1, styles.normalPosition]}>Daily</Text>
-          </View>
-        </View>
-        <View style={[styles.item2, styles.itemPosition]}>
-          <View style={[styles.content, styles.basePosition]}>
-            <View style={[styles.base7, styles.basePosition]} />
-            <Text style={[styles.normal, styles.normalPosition]}>Weekly</Text>
-          </View>
-        </View>
-        <View style={[styles.item3, styles.itemPosition]}>
-          <View style={[styles.content, styles.basePosition]}>
-            <View style={[styles.base7, styles.basePosition]} />
-            <Text style={[styles.normal, styles.normalPosition]}>Monthly</Text>
-          </View>
-        </View>
-      </View>
-      <View style={[styles.title1, styles.datePosition]}>
-        <View style={[styles.body7, styles.bodyPosition]}>
-          <Text style={[styles.steps2, styles.totalTypo]}>1 240 Steps</Text>
-        </View>
-        <Text style={[styles.steps3, styles.steps3Typo]}>Steps</Text>
-      </View>
-      <View style={[styles.base9, styles.baseBg]} />
-      <Image
-        style={styles.vectorIcon}
-        contentFit="cover"
-        source={require("../assets/vector2.png")}
-      />
-      <Image
-        style={styles.caloriesdetailsItem}
-        contentFit="cover"
-        source={require("../assets/rectangle-20.png")}
-      />
-      <Image
-        style={styles.caloriesdetailsInner}
-        contentFit="cover"
-        source={require("../assets/polygon-1.png")}
-      />
-      <Text style={[styles.text15, styles.textFlexBox]} />
-      <Text style={[styles.text16, styles.textFlexBox]}>14%</Text>
     </View>
+    </ScrollView>
   );
 };
 
@@ -484,12 +351,12 @@ const styles = StyleSheet.create({
   },
   base: {
     borderRadius: Border.br_base,
-    backgroundColor: "#ffdfe4",
+    backgroundColor: "#ffffff",
     opacity: 0.2,
     left: "0%",
     right: "0%",
     position: "absolute",
-    width: "100%",
+    width: "110%",
   },
   today8Jul: {
     width: "92.79%",
@@ -638,7 +505,7 @@ const styles = StyleSheet.create({
     height: 732,
   },
   base2: {
-    shadowColor: "rgba(241, 82, 35, 0.4)",
+    shadowColor: "#FFFFFF",
     shadowOpacity: 1,
     elevation: 8,
     shadowRadius: 8,
@@ -654,7 +521,7 @@ const styles = StyleSheet.create({
     left: "0%",
     right: "0%",
     position: "absolute",
-    width: "100%",
+    width: "120%",
   },
   triangleIcon: {
     height: "50%",
@@ -953,6 +820,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     height: 812,
     width: "100%",
+    left:20,
     backgroundColor: Color.colorsWhite100,
   },
 });

@@ -44,8 +44,8 @@ const RewardReward = () => {
           <Text style={[styles.text1]}>{`25/50 `}</Text>
           <Text style={styles.pts3}>pts</Text>
         </Text>
-        <View style={[styles.base, styles.basePosition]} />
-        <View style={[styles.status, styles.basePosition]} />
+        {/* <View style={[styles.base, styles.basePosition]} /> */}
+        {/* <View style={[styles.status, styles.basePosition]} /> */}
         
         <Text style={[styles.thisWeekPoints, styles.thisWeekPointsPosition]}>
           Todays points
@@ -57,8 +57,6 @@ const RewardReward = () => {
         contentFit="cover"
         source={require("../assets/metamask-fox-1.png")}
       />
-      <HeaderContainer />
-
       <ConnectedContainer />
       </View>
     </View>

@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, Pressable } from "react-native";
 import { Image } from "expo-image";
 import { useNavigation } from "@react-navigation/native";
 import { Border, Color, FontFamily, FontSize } from "../GlobalStyles";
+import { Avatar, Icon } from "@rneui/base";
 
 const TodaysInformationContainer = () => {
   const navigation = useNavigation();
@@ -72,6 +73,16 @@ const TodaysInformationContainer = () => {
         <Text style={[styles.todaysInformation1, styles.july2021Position]}>
           Today's Information
         </Text>
+        <View style={{left:260,top:0}}>
+        <Avatar
+          size={64}
+          rounded
+          icon={{ name:'calendar',
+          type:'antdesign',
+          color:'#FF6079' }}
+          containerStyle={{ backgroundColor: '#FFFFFF' ,borderColor:'#7F7F7F',borderWidth:0.2}}
+        />
+        </View>
       </View>
     </View>
   );

@@ -1,59 +1,92 @@
 import * as React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Dimensions } from "react-native";
 import { Image } from "expo-image";
 import { FontFamily, FontSize, Border, Color } from "../GlobalStyles";
+import { Avatar, Badge,Tooltip, TooltipProps, lightColors } from '@rneui/base';
 
+const { height } = Dimensions.get('window');
+
+const ControlledTooltip: React.FC<TooltipProps> = (props) => {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <Tooltip
+      visible={open}
+      onOpen={() => {
+        setOpen(true);
+      }}
+      onClose={() => {
+        setOpen(false);
+      }}
+      {...props}
+    />
+  );
+};
 const ConnectedContainer = () => {
   return (
     <View style={styles.tokenbar}>
       <View style={[]} />
-      <View style={[styles.off]}>
-      <Image
-        style={[styles.metamaskFox2Icon, styles.tokenLayout]}
-        contentFit="cover"
-        source={require("../assets/metamask-fox-21.png")}
-      />
-      <Text style={[styles.walletAddress]}>
-        0x2f59dBBcb3B393D86dbd539105E22ee4CaC23563
-      </Text>
-      </View>
-      <View style={[]} />
-      <View style={[styles.token, styles.tokenLayout]}>
-        <Image
-          style={[styles.tokenChild]}
-          contentFit="cover"
-          source={require("../assets/ellipse-2.png")}
-        />
-        <Image
-          style={styles.strengthIcon1}
-          contentFit="cover"
-          source={require("../assets/strengthicon-1.png")}
-        />
-        <Text style={[styles.tokenNumbers, styles.connected1Typo]}>52</Text>
-      </View>
-      <View style={[styles.connected, styles.connectedLayout]}>
-        <View style={[styles.connectedChild, styles.connectedLayout]} />
-        <Text style={[styles.connected1, styles.connected1Typo]}>
-          Connected
+      <View style={{}}>
+      <View style={{right:20,top:50}}>
+        <Text style={[styles.thursday08July, styles.helloLinhPosition]}>
+          Thursday, 08 July
         </Text>
+        <Text style={[styles.helloLinh, styles.helloLinhPosition]}>
+          Hello Linh!
+        </Text>
+      </View>
+      </View>
+      <View style={[styles.off]}>
+          <ControlledTooltip
+            popover={<Text>0x2f59dBBcb3B393D86dbd539105E22ee4CaC23563</Text>}
+            width={400}
+            backgroundColor={lightColors.grey5}
+          >
+            <Avatar
+            rounded
+            source={require("../assets/metamask-fox-21.png")}
+            size="medium"
+          />
+          <Badge
+            status="success"
+            containerStyle={{ position: 'absolute', top: 5, left: 40 }}
+          />
+          </ControlledTooltip>
+      </View>
+      <View>
+      <View style={[styles.base, styles.baseBorder]}></View>
+      <Image
+          style={{width: 50, height: 50,right:-195,top:-40}}
+          contentFit="cover"
+          source={require("../assets/token.svg")}
+        />
+        <Text style={{left:212,bottom:30,fontSize: FontSize.headline06_size,
+    color: Color.colorsBlack100,
+    fontFamily: FontFamily.headline06,}}>53</Text>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  token:{
+      height:20,
+      width:20
+  },
   tokenbarBorder: {
     borderColor: "#f5f4f4",
     borderStyle: "solid",
     position: "absolute",
   },
   off:{
-    left:-80
+    left:-80,
+    width:10,
+    top:30
   },
   tokenLayout: {
     width: 20,
     position: "absolute",
   },
+  
   connected1Typo: {
     textAlign: "left",
     fontFamily: FontFamily.headline06,
@@ -61,6 +94,22 @@ const styles = StyleSheet.create({
     lineHeight: 28,
     fontSize: FontSize.size_6xs,
     position: "absolute",
+  },
+  base: {
+    height: "190.27%",
+    
+  },
+  baseBorder: {
+    opacity: 0.2,
+    borderWidth: 1.9,
+    borderColor: "#bfbfbf",
+    borderStyle: "solid",
+    borderRadius: Border.br_5xl,
+    left: "70.48%",
+    width: "30.96%",
+    position: "absolute",
+    top:-50,
+    height: "150.27%",
   },
   connectedLayout: {
     width: 130,
@@ -125,11 +174,6 @@ const styles = StyleSheet.create({
     lineHeight: 28,
     fontSize: FontSize.size_6xs,
   },
-  token: {
-    top: 10,
-    left: 222,
-    height: 30,
-  },
   connectedChild: {
     borderRadius: Border.br_81xl,
     backgroundColor: Color.palegreen,
@@ -158,6 +202,83 @@ const styles = StyleSheet.create({
     left: 97,
     height: 45,
     width: 254,
+    position: "absolute",
+  },
+  avatarLayout: {
+    height: 56,
+    width: 56,
+    top: 3,
+    position: "absolute",
+  },
+  helloLinhPosition: {
+    textAlign: "left",
+    left: "0%",
+    width: "100%",
+    top: "50%",
+    position: "absolute",
+  },
+  buttonIcon: {
+    left: 271,
+  },
+  thursday08July: {
+    marginTop: -2,
+    fontSize: FontSize.headline04_size,
+    lineHeight: 28,
+    fontWeight: "700",
+    fontFamily: FontFamily.headline06,
+    color: Color.colorsBlack100,
+  },
+  helloLinh: {
+    marginTop: -26,
+    fontSize: FontSize.headline06_size,
+    lineHeight: 24,
+    fontFamily: FontFamily.paragraph03,
+    color: Color.gray_100,
+  },
+  title: {
+    marginTop: -25.5,
+    width: "51.07%",
+    right: "24.46%",
+    left: "24.46%",
+    height: 52,
+    top: "50%",
+    position: "absolute",
+  },
+  avatar6Icon: {
+    height: "100%",
+    top: "0%",
+    right: "0%",
+    bottom: "0%",
+    maxWidth: "100%",
+    overflow: "hidden",
+    maxHeight: "100%",
+    display: "none",
+    left: "0%",
+    width: "100%",
+    position: "absolute",
+  },
+  avatar: {
+    left: 0,
+  },
+  icon1: {
+    top: 0,
+    left: 9,
+    width: 59,
+    height: 59,
+    position: "absolute",
+  },
+  icon: {
+    top: 45,
+    left: 47,
+    width: 16,
+    height: 16,
+    position: "absolute",
+  },
+  header: {
+    top: 76,
+    left: 23,
+    width: 327,
+    height: 61,
     position: "absolute",
   },
 });

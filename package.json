@@ -19,6 +19,7 @@
     "@react-navigation/native-stack": "^6.7.0",
     "@react-navigation/routers": "^6.1.0",
     "@react-navigation/stack": "^6.2.1",
+    "@rneui/base": "github:react-native-elements/react-native-elements#base",
     "@types/react": "~18.0.27",
     "expo": "~48.0.4",
     "expo-font": "~11.1.1",
