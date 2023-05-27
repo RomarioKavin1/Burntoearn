@@ -23,11 +23,6 @@ const RewardReward = () => {
           contentFit="cover"
           source={require("../assets/icon10.png")}
         />
-        <Text
-          style={[styles.yourAvaialblePoint, styles.thisWeekPointsPosition]}
-        >
-          Your Avaialble points
-        </Text>
         <Image
           style={styles.image28Icon}
           contentFit="cover"
@@ -38,14 +33,11 @@ const RewardReward = () => {
           <Text style={[styles.text]}>{`8918 `}</Text>
           <Text style={styles.pts1}>pts.</Text>
         </Text>
-        <Text style={[styles.points]}>25</Text>
+        {/* <Text style={[styles.points]}>25</Text> */}
         <Text style={[styles.pts2, styles.ptsTypo]}>
           <Text style={[styles.text1]}>{`25/50 `}</Text>
           <Text style={styles.pts3}>pts</Text>
         </Text>
-        {/* <View style={[styles.base, styles.basePosition]} /> */}
-        {/* <View style={[styles.status, styles.basePosition]} /> */}
-        
         <Text style={[styles.thisWeekPoints, styles.thisWeekPointsPosition]}>
           Todays points
         </Text>
@@ -106,11 +98,11 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   bodyChild: {
-    top: 200,
+    top: 240,
     left: 2,
     borderRadius: 30,
     width: 325,
-    height: 189,
+    height: 150,
     opacity: 0.8,
     // backgroundColor: Color.gradientLightPurple,
     position: "absolute",
@@ -118,7 +110,7 @@ const styles = StyleSheet.create({
   icon: {
     height: "4.44%",
     width: "7.29%",
-    top: "40.19%",
+    top: "49.19%",
     right: "83.59%",
     bottom: "50.37%",
     left: "9.12%",
@@ -138,11 +130,11 @@ const styles = StyleSheet.create({
     // fontSize: FontSize.paragraph03_size,
   },
   pts: {
-    marginTop: 46,
+    marginTop: 60,
     left: "10.94%",
     lineHeight: 34,
     textAlign: "left",
-    top: "50%",
+    top: "70%",
     color: Color.colorsBlack100,
     // fontFamily: FontFamily.headline02,
     fontWeight: "700",
