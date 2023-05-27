@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Border, Color, FontFamily, FontSize } from "../GlobalStyles";
 import { Avatar} from "@rneui/base";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 
 const TodaysInformationContainer = () => {
   const navigation = useNavigation();
@@ -28,31 +29,120 @@ const TodaysInformationContainer = () => {
       const accessToken = await getAccessToken();
       if (accessToken) {
         try {
-          const currentTimeMillis = Date.now();
-          const startTimeMillis = currentTimeMillis - 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+          const endTimeMillis = Date.now();
+          const startTimeMillis = endTimeMillis - 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 
-          // Make requests to retrieve step count, calories burned, and heart rate for the past 24 hours
-          const stepCountResponse = await fetch(`https://www.googleapis.com/fitness/v1/users/me/dataSources/derived:com.google.step_count.delta:com.google.android.gms:estimated_steps/datasets/${startTimeMillis}-${currentTimeMillis}`, {
+          const requestBody = {
+            aggregateBy: [
+              {
+                dataTypeName: 'com.google.step_count.delta',
+                dataSourceId: 'derived:com.google.step_count.delta:com.google.android.gms:estimated_steps',
+              },
+            ],
+            bucketByTime: { durationMillis: 86400000 },
+            startTimeMillis,
+            endTimeMillis,
+          };
+          const stepCountResponse = await fetch('https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate', {
+            method: 'POST',
             headers: {
               Authorization: `Bearer ${accessToken}`,
+              'Content-Type': 'application/json',
             },
+            body: JSON.stringify(requestBody),
           });
 
           if (stepCountResponse.ok) {
             const stepCountData = await stepCountResponse.json();
-            // Extract step count from the data
-            const steps = stepCountData.bucket.reduce((totalSteps: number, bucket: any) => {
-              return totalSteps + bucket.dataset[0].point.reduce((bucketSteps: number, point: any) => {
-                return bucketSteps + point.value[0].intVal;
+            // Check if the bucket array exists and is not empty
+            if (stepCountData.bucket && stepCountData.bucket.length > 0) {
+              const steps = stepCountData.bucket.reduce((totalSteps: number, bucket: any) => {
+                return totalSteps + bucket.dataset[0].point.reduce((bucketSteps: number, point: any) => {
+                  return bucketSteps + point.value[0].intVal;
+                }, 0);
               }, 0);
-            }, 0);
-            setStepCount(steps);
+              setStepCount(steps);
+            } else {
+              console.log('No step count data available for the specified time range.');
+              setStepCount(0);
+            }
           } else {
-            console.error('Error fetching step count:', stepCountResponse.status, );
+            console.error('Error fetching step count:', stepCountResponse.status);
           }
+          const requestBody2 = {
+            aggregateBy:[
+            {
+              dataTypeName: 'com.google.calories.expended',
+              dataSourceId: 'derived:com.google.calories.expended:com.google.android.gms:merge_calories_expended',
+            }],
+            bucketByTime: { durationMillis: 86400000 },
+            startTimeMillis,
+            endTimeMillis,
+            
+          }
+    
+          const CalResponse = await fetch('https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate', {
+            method: 'POST',
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestBody2),
+          });
 
-          // Similar requests for calories burned and heart rate
-          // ...
+          if (CalResponse.ok) {
+            const CalData = await CalResponse.json();
+            // Check if the bucket array exists and is not empty
+            if (CalData.bucket && CalData.bucket.length > 0) {
+              const calories = CalData.bucket.reduce((totalSteps: number, bucket: any) => {
+                return totalSteps + bucket.dataset[0].point.reduce((bucketSteps: number, point: any) => {
+                  return bucketSteps + point.value[0].fpVal;
+                }, 0);
+              }, 0);
+              setCaloriesBurned(Math.round(calories));
+            } else {
+              console.log('No calorie count data available for the specified time range.');
+              setCaloriesBurned(0);
+            }
+          } else {
+            console.error('Error fetching calorie count:', stepCountResponse.status);
+          }
+          const requestBody3 = {
+            aggregateBy:[
+            {
+              dataTypeName: "com.google.heart_minutes",
+              dataSourceId: "derived:com.google.heart_minutes:com.google.android.gms:merge_heart_minutes"
+            }],
+            bucketByTime: { durationMillis: 86400000 },
+            startTimeMillis,
+            endTimeMillis,
+          }
+          const HeartResponse = await fetch('https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate', {
+            method: 'POST',
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestBody3),
+          });
+
+          if (HeartResponse.ok) {
+            const HeartData = await HeartResponse.json();
+            // Check if the bucket array exists and is not empty
+            if (HeartData.bucket && HeartData.bucket.length > 0) {
+              const bpm = HeartData.bucket.reduce((totalSteps: number, bucket: any) => {
+                return totalSteps + bucket.dataset[0].point.reduce((bucketSteps: number, point: any) => {
+                  return bucketSteps + point.value[0].fpVal;
+                }, 0);
+              }, 0);
+              setHeartRate(bpm);
+            } else {
+              console.log('No heart count data available for the specified time range.');
+              setHeartRate(0);
+            }
+          } else {
+            console.error('Error fetching heart count:', HeartResponse.status);
+          }
 
         } catch (error) {
           console.error('Error fetching data from Google Fit:', error);
@@ -104,7 +194,7 @@ const TodaysInformationContainer = () => {
             contentFit="cover"
             source={require("../assets/chart.png")}
           />
-          <Text style={[styles.bpm, styles.textPosition]}>bpm</Text>
+          <Text style={[styles.bpm, styles.textPosition]}>Points</Text>
           <Text style={[styles.text2, styles.textTypo]}>{heartRate || 'Loading...'}</Text>
           <View style={[styles.title2, styles.titlePosition]}>
             <Image
@@ -112,7 +202,7 @@ const TodaysInformationContainer = () => {
               contentFit="cover"
               source={require("../assets/icon2.png")}
             />
-            <Text style={[styles.steps2, styles.steps2Layout]}>Heart</Text>
+            <Text style={[styles.steps2, styles.steps2Layout]}>Heart Points</Text>
           </View>
         </View>
       </View>
