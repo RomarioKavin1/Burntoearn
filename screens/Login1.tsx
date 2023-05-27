@@ -14,7 +14,8 @@ const Login1 = () => {
   const [user,setUser]=React.useState(null);
   const [request, response, promptAsync] = Google.useAuthRequest({
     androidClientId: environments(1),
-    clientId: environments(0)
+    clientId: environments(0),
+    scopes:["https://www.googleapis.com/auth/fitness.activity.read","https://www.googleapis.com/auth/fitness.heart_rate.read"]
   });
   React.useEffect(() => {
     if(response?.type==='success'){
