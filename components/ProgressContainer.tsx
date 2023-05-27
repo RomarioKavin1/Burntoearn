@@ -1,8 +1,10 @@
 import * as React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text,  } from "react-native";
 import { Image } from "expo-image";
 import { FontSize, Color, Border, FontFamily } from "../GlobalStyles";
-
+import { Button } from "react-native-paper";
+import CountDown from 'react-native-countdown-component';
+ 
 const ProgressContainer = () => {
   return (
     <View style={styles.card}>
@@ -10,19 +12,33 @@ const ProgressContainer = () => {
         <View style={styles.line} />
         <View style={styles.text}>
           <Text style={styles.keepParticipatingI}>
-            Keep participating in weekly challenges
+           Mint your tokens now
           </Text>
-          <Text style={styles.letsKeepGoing}>Let's keep going</Text>
+          <Text style={styles.letsKeepGoing}>Cash-in exciting rewards</Text>
         </View>
         <View style={styles.title}>
-          <Text style={[styles.text1, styles.text1Typo]}>2,000+</Text>
-          <Text style={[styles.steps, styles.text1Typo]}>Steps</Text>
+          <Text style={[styles.text1]}>58</Text>
+          <Text style={[styles.steps, styles.text1Typo,styles.offset]}>Coins Avaiable :</Text>
         </View>
         <Image
           style={styles.icon}
           contentFit="cover"
-          source={require("../assets/icon9.png")}
+          source={require("../assets/token.svg")}
         />
+        <CountDown
+        until={24*60*60}
+        // onFinish={() => alert('finished')}
+        timeToShow={['H', 'M', 'S']}
+        timeLabels={{h:null,m: null, s: null}}
+        showSeparator
+        digitStyle={{backgroundColor: '#FFEDF0', borderWidth: 2, borderColor: '#FFEDF0'}}
+        // onPress={() => alert('hello')}
+        size={12}
+        style={{left:"29%",top:"13%"}}
+      />
+        <Button mode ='elevated' buttonColor='#FFEDF0'textColor="#040415" onPress={() => console.log('Pressed')} style={{width:"25%",left:"70%",top:"50%"}}>
+            Mint
+        </Button>
       </View>
     </View>
   );
@@ -31,7 +47,7 @@ const ProgressContainer = () => {
 const styles = StyleSheet.create({
   text1Typo: {
     lineHeight: 26,
-    fontSize: FontSize.bodyBody1_size,
+    fontSize: FontSize.headline07_size,
     color: Color.colorsBlack100,
     textAlign: "left",
     top: 0,
@@ -82,17 +98,22 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   text1: {
-    left: 45,
-    fontFamily: FontFamily.headline06,
+    left: 0,
+    top:10,
+    fontFamily: FontFamily.poppinsRegular,
     fontWeight: "700",
-    lineHeight: 26,
-    fontSize: FontSize.bodyBody1_size,
+    lineHeight: 30,
+    fontSize:30,
+  },
+  offset:{
+    top:-15,
+    left:-20
   },
   steps: {
     lineHeight: 26,
     fontSize: FontSize.bodyBody1_size,
     fontFamily: FontFamily.paragraph03,
-    left: 0,
+    left: -7,
   },
   title: {
     top: 39,
