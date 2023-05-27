@@ -1,14 +1,55 @@
 import * as React from "react";
+import * as WebBrowser from 'expo-web-browser';
+import * as Google from 'expo-auth-session/providers/google';
 import { Image } from "expo-image";
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Color, FontSize, FontFamily, Border } from "../GlobalStyles";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import environments from "./environments";
+WebBrowser.maybeCompleteAuthSession();
 const Login1 = () => {
   const navigation = useNavigation();
+  const [accessToken,setAccessToken]=React.useState(null);
+  const [user,setUser]=React.useState(null);
+  const [request, response, promptAsync] = Google.useAuthRequest({
+    androidClientId: environments(1),
+    clientId: environments(0)
+  });
+  React.useEffect(() => {
+    if(response?.type==='success'){
+      setAccessToken(response.authentication?.accessToken);
+      accessToken && fetchUserInfo();
+  }},[response,accessToken])
+  React.useEffect(() => {
+    // Obtain the access token
+    const receivedAccessToken = accessToken;
+    // Store the access token
+    const storeAccessToken = async (accessToken1: string) => {
+      if(accessToken!==null){
+      try {
 
+        await AsyncStorage.setItem('accessToken', accessToken1);
+        console.log('Access token stored successfully.');
+      } catch (error) {
+        console.error('Error storing access token:', error);
+      }}
+    };
+
+    storeAccessToken(receivedAccessToken);
+  }, [accessToken]);
+async function fetchUserInfo(){
+  let response=await fetch('https://www.googleapis.com/userinfo/v2/me',{
+    headers:{Authorization:`Bearer ${accessToken}`}
+  });
+  const useInfo = await response.json();
+  setUser(useInfo);
+  
+};
   return (
     <View style={styles.login}>
-      <Image
+      {user &&  navigation.navigate("Login")}
+     <Image
         style={[styles.illustrationIcon, styles.illustrationIconPosition]}
         contentFit="cover"
         source={require("../assets/illustration2.png")}
@@ -22,7 +63,10 @@ const Login1 = () => {
       <Text style={[styles.getFitGet, styles.getClr]}>Turning steps into savings, one token at a time!</Text>
       <Pressable
         style={styles.loginbutton}
-        onPress={() => navigation.navigate("Login")}
+        disabled={!request}
+        onPress={() => {
+          promptAsync();
+        }}
       >
         <View style={styles.buttonShape} />
         <View style={[styles.loginText, styles.loginTextLayout]}>
@@ -36,6 +80,7 @@ const Login1 = () => {
           />
         </View>
       </Pressable>
+      
     </View>
   );
 };

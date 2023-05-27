@@ -3,10 +3,65 @@ import { StyleSheet, View, Text, Pressable } from "react-native";
 import { Image } from "expo-image";
 import { useNavigation } from "@react-navigation/native";
 import { Border, Color, FontFamily, FontSize } from "../GlobalStyles";
-import { Avatar, Icon } from "@rneui/base";
+import { Avatar} from "@rneui/base";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const TodaysInformationContainer = () => {
   const navigation = useNavigation();
+  const [stepCount, setStepCount] = React.useState<number | null>(null);
+  const [caloriesBurned, setCaloriesBurned] = React.useState<number | null>(null);
+  const [heartRate, setHeartRate] = React.useState<number | null>(null);
+
+  React.useEffect(() => {
+    const getAccessToken = async () => {
+      try {
+        const accessToken = await AsyncStorage.getItem('accessToken');
+        console.log('Access token retrieved:', accessToken);
+        return accessToken;
+      } catch (error) {
+        console.error('Error retrieving access token:', error);
+        return null;
+      }
+    };
+
+    const fetchDataFromGoogleFit = async () => {
+      const accessToken = await getAccessToken();
+      if (accessToken) {
+        try {
+          const currentTimeMillis = Date.now();
+          const startTimeMillis = currentTimeMillis - 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+
+          // Make requests to retrieve step count, calories burned, and heart rate for the past 24 hours
+          const stepCountResponse = await fetch(`https://www.googleapis.com/fitness/v1/users/me/dataSources/derived:com.google.step_count.delta:com.google.android.gms:estimated_steps/datasets/${startTimeMillis}-${currentTimeMillis}`, {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          });
+
+          if (stepCountResponse.ok) {
+            const stepCountData = await stepCountResponse.json();
+            // Extract step count from the data
+            const steps = stepCountData.bucket.reduce((totalSteps: number, bucket: any) => {
+              return totalSteps + bucket.dataset[0].point.reduce((bucketSteps: number, point: any) => {
+                return bucketSteps + point.value[0].intVal;
+              }, 0);
+            }, 0);
+            setStepCount(steps);
+          } else {
+            console.error('Error fetching step count:', stepCountResponse.status, );
+          }
+
+          // Similar requests for calories burned and heart rate
+          // ...
+
+        } catch (error) {
+          console.error('Error fetching data from Google Fit:', error);
+        }
+      }
+    };
+
+    fetchDataFromGoogleFit();
+  }, []);
 
   return (
     <View style={[styles.todaysInformation, styles.itemsPosition]}>
@@ -14,7 +69,7 @@ const TodaysInformationContainer = () => {
         <View style={[styles.calories, styles.stepsPosition]}>
           <View style={[styles.base, styles.baseBorder]} />
           <Text style={[styles.kcal, styles.textPosition]}>Kcal</Text>
-          <Text style={[styles.text, styles.textTypo]}>620.68</Text>
+          <Text style={[styles.text, styles.textTypo]}>{caloriesBurned || 'Loading...'}</Text>
           <View style={[styles.title, styles.titlePosition1]}>
             <Image
               style={[styles.flameIcon, styles.iconLayout]}
@@ -32,7 +87,7 @@ const TodaysInformationContainer = () => {
         >
           <View style={[styles.base, styles.baseBorder]} />
           <Text style={[styles.kcal, styles.textPosition]}>Steps</Text>
-          <Text style={[styles.text, styles.textTypo]}>1 240</Text>
+          <Text style={[styles.text, styles.textTypo]}>{stepCount || 'Loading...'}</Text>
           <View style={[styles.title1, styles.titlePosition]}>
             <Image
               style={[styles.icon, styles.iconPosition]}
@@ -50,7 +105,7 @@ const TodaysInformationContainer = () => {
             source={require("../assets/chart.png")}
           />
           <Text style={[styles.bpm, styles.textPosition]}>bpm</Text>
-          <Text style={[styles.text2, styles.textTypo]}>74</Text>
+          <Text style={[styles.text2, styles.textTypo]}>{heartRate || 'Loading...'}</Text>
           <View style={[styles.title2, styles.titlePosition]}>
             <Image
               style={[styles.icon, styles.iconPosition]}

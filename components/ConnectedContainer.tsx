@@ -1,11 +1,9 @@
 import * as React from "react";
-import { StyleSheet, View, Text, Dimensions } from "react-native";
+import { StyleSheet, View, Text,} from "react-native";
 import { Image } from "expo-image";
 import { FontFamily, FontSize, Border, Color } from "../GlobalStyles";
 import { Avatar, Badge,Tooltip, TooltipProps, lightColors } from '@rneui/base';
-
-const { height } = Dimensions.get('window');
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const ControlledTooltip: React.FC<TooltipProps> = (props) => {
   const [open, setOpen] = React.useState(false);
   return (
@@ -21,17 +19,63 @@ const ControlledTooltip: React.FC<TooltipProps> = (props) => {
     />
   );
 };
-const ConnectedContainer = () => {
+const ConnectedContainer = () => {  const [userName, setUserName] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    // Retrieve the access token
+    const getAccessToken = async () => {
+      try {
+        const accessToken = await AsyncStorage.getItem('accessToken');
+        console.log('Access token retrieved1:', accessToken);
+        return accessToken;
+      } catch (error) {
+        console.error('Error retrieving access token1:', error);
+        return null;
+      }
+    };
+
+    // Make a request to retrieve user information
+    const getUserInfo = async () => {
+      const accessToken = await getAccessToken();
+      if (accessToken) {
+        try {
+          const response = await fetch('https://www.googleapis.com/userinfo/v2/me', {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            // Extract user name from the data
+            const { name } = data;
+            setUserName(name);
+          } else {
+            console.error('Error fetching user info:', response.status);
+          }
+        } catch (error) {
+          console.error('Error fetching user info:', error);
+        }
+      }
+    };
+
+    getUserInfo();
+  }, []);
   return (
     <View style={styles.tokenbar}>
+      
       <View style={[]} />
       <View style={{}}>
       <View style={{right:20,top:50}}>
         <Text style={[styles.thursday08July, styles.helloLinhPosition]}>
           Thursday, 08 July
         </Text>
+        {/* {isLoading ? <Text style={[styles.helloLinh, styles.helloLinhPosition]}>Loading...</Text> : 
+      ( 
+        <Text style={[styles.helloLinh, styles.helloLinhPosition]}>Hello {data.name}</Text>
+      )} */}
         <Text style={[styles.helloLinh, styles.helloLinhPosition]}>
-          Hello Linh!
+        {userName ? `Welcome, ${userName}` : 'Loading user information...'}
         </Text>
       </View>
       </View>

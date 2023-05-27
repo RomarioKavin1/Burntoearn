@@ -3,7 +3,7 @@ node_modules/
 *.log
 *.logs
 .env
-
+/screens/environments.tsx
 
 ### Node ###
 # Logs

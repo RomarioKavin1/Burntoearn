@@ -3,7 +3,6 @@ import { StyleSheet, View, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Image } from "expo-image";
 import ProgressContainer from "../components/ProgressContainer";
-import HeaderContainer from "../components/HeaderContainer";
 import ConnectedContainer from "../components/ConnectedContainer";
 import { Color, FontFamily, Border, FontSize } from "../GlobalStyles";
 

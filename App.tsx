@@ -1,5 +1,7 @@
 
+//690667431796-j7k7p2v793q947ph7p9bins50dqjprg1.apps.googleusercontent.com
 import * as React from "react";
+
 import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import Login1 from "./screens/Login1";
@@ -10,11 +12,15 @@ import Login from "./screens/Login";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Icon from 'react-native-vector-icons/Ionicons';
-import { View, Text, Pressable, TouchableOpacity } from "react-native";
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 const tintColor='#2d3436'
 const Hometabs =()=>{
+
+  
+
+
+
   return(
   <Tab.Navigator
     initialRouteName="Login1"

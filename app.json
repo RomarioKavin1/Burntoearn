@@ -20,7 +20,9 @@
     "ios": {
       "supportsTablet": true
     },
+    "scheme": "com.sample.burntoearn",
     "android": {
+      "package": "com.sample.burntoearn",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
@@ -28,6 +30,13 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "ANDROID_CLIENT_ID":"690667431796-j7k7p2v793q947ph7p9bins50dqjprg1.apps.googleusercontent.com",
+        "CLIENT_ID":"690667431796-4ru1287vrku2dounccetbsf46bavq53o.apps.googleusercontent.com",
+        "projectId": "7eddbaff-8dcd-4123-ad8b-2727e57e7247"
+      }
     }
   }
 }
