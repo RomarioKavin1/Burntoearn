@@ -1,12 +1,22 @@
 import * as React from "react";
 import { Image } from "expo-image";
-import { StyleSheet, Text, View, Pressable } from "react-native";
+import { StyleSheet, Text, View, Pressable, Platform } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { FontSize, FontFamily, Color, Border } from "../GlobalStyles";
-
+import {
+  withWalletConnect,
+  useWalletConnect,
+} from "@walletconnect/react-native-dapp";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const Login = () => {
   const navigation = useNavigation();
+  const connector = useWalletConnect(); // valid
 
+  React.useEffect(() => {
+    if (connector.connected) {
+      navigation.navigate("HomeScroll3");
+    }
+  }, [connector]);
   return (
     <View style={styles.login}>
       <Image
@@ -22,7 +32,9 @@ const Login = () => {
       <Text style={styles.syncYourWallet}>Sync Your Wallet</Text>
       <Pressable
         style={styles.loginbutton}
-        onPress={() => navigation.navigate("HomeScroll3")}
+        onPress={() => {
+          connector.connect();
+        }}
       >
         <View style={styles.buttonShape} />
         <View style={[styles.loginText, styles.loginTextLayout]}>
@@ -128,4 +140,17 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+// export default Login;
+export default withWalletConnect(Login, {
+  clientMeta: {
+    icons: [""],
+    url: "",
+    name: "WalletConnect Developer App",
+    description: "Connect with WalletConnect",
+  },
+  redirectUrl:
+    Platform.OS === "web" ? window.location.origin : "yourappscheme://",
+  storageOptions: {
+    asyncStorage: AsyncStorage,
+  },
+});

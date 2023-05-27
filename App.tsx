@@ -1,7 +1,5 @@
-
 //690667431796-j7k7p2v793q947ph7p9bins50dqjprg1.apps.googleusercontent.com
 import * as React from "react";
-
 import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import Login1 from "./screens/Login1";
@@ -9,39 +7,43 @@ import HomeScroll3 from "./screens/HomeScroll3";
 import CaloriesDetails from "./screens/CaloriesDetails";
 import RewardReward from "./screens/RewardReward";
 import Login from "./screens/Login";
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from "react-native-vector-icons/Ionicons";
+import WalletConnectProvider from "@walletconnect/react-native-dapp";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Platform } from "react-native";
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createNativeStackNavigator();
-const tintColor='#2d3436'
-const Hometabs =()=>{
-
-  
-
-
-
-  return(
-  <Tab.Navigator
-    initialRouteName="Login1"
-    // screenOptions={{ headerShown: false }}
-  >
-    <Tab.Screen
-      name="Home"
-      
-      component={HomeScroll3}
-      options={{tabBarIcon:()=>(  
-        <Icon name="ios-home" color={tintColor} size={25}/>
-        
-    )}}
-    />
-    <Tab.Screen
-      name="Rewards"
-      component={RewardReward}
-      // options={{ headerShown: false }}
-      options={{tabBarIcon:()=>(<Icon name="ios-medal" color={tintColor} size={25}/>)}}/>
-  </Tab.Navigator>)
-}
+const tintColor = "#2d3436";
+const Hometabs = () => {
+  return (
+    <Tab.Navigator
+      initialRouteName="Login1"
+      // screenOptions={{ headerShown: false }}
+    >
+      <Tab.Screen
+        name="Home"
+        component={HomeScroll3}
+        options={{
+          tabBarIcon: () => (
+            <Icon name="ios-home" color={tintColor} size={25} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Rewards"
+        component={RewardReward}
+        // options={{ headerShown: false }}
+        options={{
+          tabBarIcon: () => (
+            <Icon name="ios-medal" color={tintColor} size={25} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
 const App = () => {
   const [hideSplashScreen, setHideSplashScreen] = React.useState(true);
   const [fontsLoaded, error] = useFonts({
@@ -60,40 +62,57 @@ const App = () => {
 
   return (
     <>
-      <NavigationContainer>
-        {hideSplashScreen ? (<Stack.Navigator
-            initialRouteName="Login1"
-            screenOptions={{ headerShown: false }}
-          >
-            <Stack.Screen
-              name="Login1"
-              component={Login1}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="HomeScroll3"
-              component={Hometabs}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="CaloriesDetails"
-              component={CaloriesDetails}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="RewardReward"
-              component={Hometabs}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Login"
-              component={Login}
-              options={{ headerShown: false }}
-            />
-          </Stack.Navigator>
-          
-        ) : null}
-      </NavigationContainer>
+      {" "}
+      <WalletConnectProvider
+        bridge="https://bridge.walletconnect.org"
+        clientMeta={{
+          description: "Connect with WalletConnect",
+          url: "https://walletconnect.org",
+          icons: ["https://walletconnect.org/walletconnect-logo.png"],
+          name: "WalletConnect",
+        }}
+        redirectUrl={
+          Platform.OS === "web" ? window.location.origin : "yourappscheme://"
+        }
+        storageOptions={{
+          asyncStorage: AsyncStorage,
+        }}
+      >
+        <NavigationContainer>
+          {hideSplashScreen ? (
+            <Stack.Navigator
+              initialRouteName="Login1"
+              screenOptions={{ headerShown: false }}
+            >
+              <Stack.Screen
+                name="Login1"
+                component={Login1}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="HomeScroll3"
+                component={Hometabs}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="CaloriesDetails"
+                component={CaloriesDetails}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="RewardReward"
+                component={Hometabs}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Login"
+                component={Login}
+                options={{ headerShown: false }}
+              />
+            </Stack.Navigator>
+          ) : null}
+        </NavigationContainer>
+      </WalletConnectProvider>
     </>
   );
 };
