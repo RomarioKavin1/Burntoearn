@@ -57,7 +57,7 @@ const Coupons = () => {
             <FlatList 
             style={{left:10}}
                 data={coups}
-                renderItem={({ item }) => <Product name={item.name} description={item.desc} cost={item.cost} discount={item.discount+'$ Discount Coupon'} img={item.img} onPress={()=>setModalVisible(true)}/>}
+                renderItem={({ item }) => <Product name={item.name} description={item.desc} cost={item.cost} discount={item.discount+'% Discount Coupon'} img={item.img} onPress={()=>setModalVisible(true)}/>}
                 keyExtractor={(item) => item.id}
             />
             </View>
