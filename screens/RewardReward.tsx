@@ -1,10 +1,12 @@
 import * as React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import * as Svg from 'react-native-svg'
 import { Image } from "expo-image";
 import ProgressContainer from "../components/ProgressContainer";
 import ConnectedContainer from "../components/ConnectedContainer";
 import { Color, FontFamily, Border, FontSize } from "../GlobalStyles";
+import Countdown from "../components/Countdown";
 
 const RewardReward = () => {
   return (
@@ -12,7 +14,8 @@ const RewardReward = () => {
       <View style={styles.offset}>
       <View style={styles.body}>
         <ProgressContainer />
-        <LinearGradient
+        <Countdown />
+        {/* <LinearGradient
           style={styles.bodyChild}
           locations={[0, 1]}
           colors={["rgba(255, 96, 121, 0.16)", "rgba(255, 96, 121, 0.09)"]}
@@ -33,7 +36,6 @@ const RewardReward = () => {
           <Text style={[styles.text]}>{`8918 `}</Text>
           <Text style={styles.pts1}>pts.</Text>
         </Text>
-        {/* <Text style={[styles.points]}>25</Text> */}
         <Text style={[styles.pts2, styles.ptsTypo]}>
           <Text style={[styles.text1]}>{`25/50 `}</Text>
           <Text style={styles.pts3}>pts</Text>
@@ -41,7 +43,7 @@ const RewardReward = () => {
         <Text style={[styles.thisWeekPoints, styles.thisWeekPointsPosition]}>
           Todays points
         </Text>
-        </View>
+        </View> */}
       </View>
       <Image
         style={styles.metamaskFox1Icon}

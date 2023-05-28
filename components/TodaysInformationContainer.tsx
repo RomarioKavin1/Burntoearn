@@ -5,7 +5,6 @@ import { useNavigation } from "@react-navigation/native";
 import { Border, Color, FontFamily, FontSize } from "../GlobalStyles";
 import { Avatar} from "@rneui/base";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import axios from 'axios';
 
 const TodaysInformationContainer = () => {
   const navigation = useNavigation();
@@ -207,11 +206,6 @@ const TodaysInformationContainer = () => {
         </View>
       </View>
       <View style={[styles.title3, styles.itemsPosition]}>
-        {/* <Image
-          style={[styles.icon2, styles.iconLayout]}
-          contentFit="cover"
-          source={require("../assets/icon3.png")}
-        /> */}
         <Text style={[styles.july2021, styles.july2021Position]}>
           July, 2021
         </Text>
