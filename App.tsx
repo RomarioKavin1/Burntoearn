@@ -9,6 +9,7 @@ import HomeScroll3 from "./screens/HomeScroll3";
 import CaloriesDetails from "./screens/CaloriesDetails";
 import RewardReward from "./screens/RewardReward";
 import Login from "./screens/Login";
+import Coupons from "./screens/Coupons";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -40,6 +41,10 @@ const Hometabs =()=>{
       component={RewardReward}
       // options={{ headerShown: false }}
       options={{tabBarIcon:()=>(<Icon name="ios-medal" color={tintColor} size={25}/>)}}/>
+    <Tab.Screen
+      name="Coupons"
+      component={Coupons}
+      options={{tabBarIcon:()=>(<Icon name="ios-card" color={tintColor} size={25}/>)}}/>
   </Tab.Navigator>)
 }
 const App = () => {
@@ -90,6 +95,10 @@ const App = () => {
               component={Login}
               options={{ headerShown: false }}
             />
+            <Stack.Screen
+              name="Coupons"
+              component={Coupons}
+              options={{ headerShown: false }}/>
           </Stack.Navigator>
           
         ) : null}

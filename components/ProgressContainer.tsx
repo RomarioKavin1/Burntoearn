@@ -2,6 +2,7 @@ import * as React from "react";
 import { StyleSheet, View, Text,  } from "react-native";
 import { Image } from "expo-image";
 import { FontSize, Color, Border, FontFamily } from "../GlobalStyles";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const ProgressContainer = () => {
   return (
     <View style={styles.card}>
@@ -14,15 +15,14 @@ const ProgressContainer = () => {
           <Text style={styles.letsKeepGoing}>Cash-in exciting rewards</Text>
         </View>
         <Text style={{fontFamily:FontFamily.dMSansBold,top:20,lineHeight:20,height:100,width:200,left:100}}>Today's Avaiable points:</Text>
-        <View style={styles.title}>
-          <Text style={[styles.text1]}>58</Text>
-        </View>
-        <Image
-          style={styles.icon}
-          contentFit="cover"
-          source={require("../assets/token.svg")}
-        />
-        
+          <View style={styles.title}>
+            <Text style={[styles.text1]}>58</Text>
+          </View>
+          <Image
+            style={styles.icon}
+            contentFit="cover"
+            source={require("../assets/token2.svg")}
+          />
       </View>
     </View>
   );

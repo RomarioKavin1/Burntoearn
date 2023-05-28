@@ -5,7 +5,6 @@ import { useNavigation } from "@react-navigation/native";
 import { Border, Color, FontFamily, FontSize } from "../GlobalStyles";
 import { Avatar} from "@rneui/base";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 const TodaysInformationContainer = () => {
   const navigation = useNavigation();
   const [stepCount, setStepCount] = React.useState<number | null>(null);
@@ -23,7 +22,6 @@ const TodaysInformationContainer = () => {
         return null;
       }
     };
-
     const fetchDataFromGoogleFit = async () => {
       const accessToken = await getAccessToken();
       if (accessToken) {
@@ -88,7 +86,6 @@ const TodaysInformationContainer = () => {
             },
             body: JSON.stringify(requestBody2),
           });
-
           if (CalResponse.ok) {
             const CalData = await CalResponse.json();
             // Check if the bucket array exists and is not empty
@@ -124,7 +121,6 @@ const TodaysInformationContainer = () => {
             },
             body: JSON.stringify(requestBody3),
           });
-
           if (HeartResponse.ok) {
             const HeartData = await HeartResponse.json();
             // Check if the bucket array exists and is not empty
@@ -142,14 +138,14 @@ const TodaysInformationContainer = () => {
           } else {
             console.error('Error fetching heart count:', HeartResponse.status);
           }
-
         } catch (error) {
           console.error('Error fetching data from Google Fit:', error);
         }
       }
+      
     };
-
     fetchDataFromGoogleFit();
+    
   }, []);
 
   return (
